@@ -4,3 +4,30 @@ BOARD_COLS = 50
 CELL_SIZE = 20 # pixels per cell
 WINDOW_WIDTH = BOARD_COLS * CELL_SIZE
 WINDOW_HEIGHT = BOARD_ROWS * CELL_SIZE
+
+# consts.py
+FLAG_ROWS = 3
+FLAG_COLS = 4
+# game_field.py
+flag_row = BOARD_ROWS - FLAG_ROWS
+flag_col = BOARD_COLS - FLAG_COLS
+
+
+LOSE_MESSAGE= "you lose"
+LOSE_FONT_SIZE = 20
+LOSE_COLOR = "red"
+
+WIN_MESSAGE = "you win"
+WIN_FONT_SIZE = 20
+WIN_COLOR = "black"
+
+LOATCION = \
+    (0.2 * WINDOW_WIDTH, WINDOW_HEIGHT / 2 - (WIN_FONT_SIZE / 2))
+
+COLOR_SCREEN = (0,107,60)
+
+
+FONT_NAME = "Arial Black"
+FONT_SIZE = 15
+
+LINE_COLOR = (85,107,47)
