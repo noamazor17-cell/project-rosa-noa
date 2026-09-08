@@ -1,7 +1,7 @@
 import Screen
 import consts
 import pygame
-
+import keyboard
 
 
 # screen = pygame.display.set_mode(
@@ -11,5 +11,5 @@ import pygame
 
 # Screen.screen_draw()
 #
-# Screen.draw()
+# Screen.draw():
 Screen.run_night_mode()

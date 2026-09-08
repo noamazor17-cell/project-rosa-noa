@@ -4,6 +4,8 @@ import pygame
 from sys import exit #terminate the program
 
 import consts
+import game_field
+
 pygame.font.init()
 
 #game variables
@@ -21,9 +23,8 @@ def draw_screen():
     pygame.init() #always needed to initialize pygame
     pygame.display.set_caption("The Flag Game") #title of the window
 
-def draw_player(x,y):
-    player = pygame.image.load("soldier.png")
-    player = pygame.transform.scale(player, (consts.CELL_SIZE * 2, consts.CELL_SIZE * 4))
+def draw_player(x,y, img):
+    player = pygame.transform.scale(img, (consts.CELL_SIZE * 2, consts.CELL_SIZE * 4))
     window.blit(player, (x,y))
 
 
@@ -32,6 +33,9 @@ def draw_bushes():
         y = random.randint(0,(consts.BOARD_ROWS*20))
         window.blit(img, (x, y))
 
+def draw_bombs(x,y):
+    bombs = pygame.image.load("mine.png")
+    window.blit(bombs, (x, y))
 
 def draw_flag():
     flag = pygame.image.load("flag.png")
@@ -48,7 +52,8 @@ def run():
     window.fill(consts.COLOR_SCREEN)
     for i in range(20):
         draw_bushes()
-    draw_player(0, 0)
+    sol_img = pygame.image.load("soldier.png")
+    draw_player(0, 0, sol_img)
     draw_text("Welcome To The Flag Game!\n HAVE FUN!", text_font, (255,255,255), 30,0)
     draw_flag()
     while True: #game loop
@@ -61,11 +66,20 @@ def run():
         # draw_bushes()
         pygame.display.flip()
 
+def put_bombs():
+    field = game_field.spred_bombs()
+    for i in range(len(field)):
+        for j in range(len(field[i])):
+            if j == "BOMB":
+                draw_bombs(i,j)
+
 
 def run_night_mode():
     window.fill(consts.COLOR_SCREEN)
-    draw_player(0, 0)
+    night_img = pygame.image.load("soldier_night.png")
+    # draw_player(0, 0,night_img)
     draw_flag()
+    put_bombs() #DOESNT SHOW BOMBS
     screen = pygame.display.set_mode((GAME_WIDTH, GAME_HEIGHT))
     while True: #game loop
         for event in pygame.event.get():
@@ -77,6 +91,6 @@ def run_night_mode():
             for y in range(0,GAME_WIDTH,20):
                 pygame.draw.line(screen,consts.LINE_COLOR,(y,1), (y,GAME_WIDTH), 2)
             draw_flag()
-            draw_player(0, 0)
+            draw_player(0, 0, night_img)
         pygame.display.update()
         pygame.display.flip()
