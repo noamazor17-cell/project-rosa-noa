@@ -1,3 +1,4 @@
+#CONSTS
 BOARD_ROWS = 25
 BOARD_COLS = 50
 CELL_SIZE = 20 # pixels per cell
