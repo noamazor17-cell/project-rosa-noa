@@ -1,5 +1,6 @@
 import consts
 import random
+import keyboard
 
 field = []
 EMPTY = "EMPTY"
@@ -64,6 +65,22 @@ def square_collide_with_bomb(field):
                 collide_with_bomb.append((i, j))
     return collide_with_bomb
 
-def is_solider_touch_flag(collide_with_flag, soldier):
-    solider_touch_flag = False
+def put_solider_at_field(first_squrt, solider, field):
+    soldier_i = 0
+    for i in range(first_squrt[0], first_squrt[0]+4):
+        soldier_j = 0
+        for j in range(first_squrt[1], first_squrt[1]+2):
+
+def is_move_valid():
+    #return the corrct string for move
+    if keyboard.read_key() == 'up':
+        return "up"
+    if keyboard.read_key() == 'left':
+        return "left"
+    if keyboard.read_key() == 'right':
+        return "right"
+    if keyboard.read_key() == 'down':
+        return "down"
+
+
 
