@@ -1,6 +1,7 @@
 import consts
 import random
 import keyboard
+import soldier
 
 field = []
 EMPTY = "EMPTY"
@@ -65,22 +66,43 @@ def square_collide_with_bomb(field):
                 collide_with_bomb.append((i, j))
     return collide_with_bomb
 
+
 def put_solider_at_field(first_squrt, solider, field):
     soldier_i = 0
     for i in range(first_squrt[0], first_squrt[0]+4):
         soldier_j = 0
         for j in range(first_squrt[1], first_squrt[1]+2):
+            field[i][j] = solider[soldier_i][soldier_j]
+            soldier_j += 1
+        soldier_i += 1
 
-def move():
+
+def move(solider):
     #return the corrct string for move
-    if keyboard.read_key() == 'up':
-        return "up"
-    if keyboard.read_key() == 'left':
-        return "left"
-    if keyboard.read_key() == 'right':
-        return "right"
-    if keyboard.read_key() == 'down':
-        return "down"
+    row = solider[0]
+    col = solider[0][0]
+    while True:
+        if keyboard.read_key() == 'up':
+            return [row+1, col]
+        if keyboard.read_key() == 'left':
+            return [row, col-1]
+        if keyboard.read_key() == 'right':
+            return [row, col+1]
+        if keyboard.read_key() == 'down':
+            return [row-1, col]
+
+
+def make_a_move(field, solider):
+    the_move = move(solider)
+    if soldier.is_in_board(the_move[0], the_move[1]):
+        put_solider_at_field(the_move, solider, field)
+        return True
+    else:
+        return False
+
+
+
+
 
 
 
