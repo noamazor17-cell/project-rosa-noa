@@ -82,6 +82,7 @@ def move(solider):
     row = solider[0]
     col = solider[0][0]
     while True:
+        key = keyboard.read_key()
         if keyboard.read_key() == 'up':
             return [row+1, col]
         if keyboard.read_key() == 'left':
