@@ -4,3 +4,10 @@ BOARD_COLS = 50
 CELL_SIZE = 20 # pixels per cell
 WINDOW_WIDTH = BOARD_COLS * CELL_SIZE
 WINDOW_HEIGHT = BOARD_ROWS * CELL_SIZE
+
+# consts.py
+FLAG_ROWS = 3
+FLAG_COLS = 4
+# game_field.py
+flag_row = BOARD_ROWS - FLAG_ROWS
+flag_col = BOARD_COLS - FLAG_COLS
