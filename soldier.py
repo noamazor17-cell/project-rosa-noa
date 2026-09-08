@@ -3,6 +3,8 @@ import random
 import keyboard
 import pygame
 
+import game_field
+
 solider = []
 def create_solider():
     global solider
@@ -16,8 +18,15 @@ def create_solider():
     return solider
 
 
-def is_in_board(col, row, direction):
-    if direction == "BODY":
+def is_in_board(col, row):
+    if game_field.move() == "up":
+        return row > 0
+    if game_field.move() == "down":
+        return row + 3 < consts.BOARD_ROWS
+    if game_field.move() == "right":
+        return col + 1 > consts.BOARD_COLS
+    if game_field.move() == "left":
+        return col > 0
 
 
 
