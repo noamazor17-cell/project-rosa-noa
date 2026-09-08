@@ -71,7 +71,7 @@ def put_solider_at_field(first_squrt, solider, field):
         soldier_j = 0
         for j in range(first_squrt[1], first_squrt[1]+2):
 
-def get_move():
+def move():
     #return the corrct string for move
     if keyboard.read_key() == 'up':
         return "up"
