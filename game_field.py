@@ -25,10 +25,8 @@ def print_field(field):
 
 
 
-
-
-
-def spred_bombs(field):
+def spred_bombs():
+    field = create_field()
     #get the field, and randomly spred bombs at the field
     for i in range (20):
         col = random.randint(0, consts.BOARD_COLS-1)
@@ -48,6 +46,7 @@ def spred_bombs(field):
             field[row][col] = BOMB
             field[row][col+1] = BOMB
             field[row][col+2] = BOMB
+    return field
 
 def square_collide_with_flag():
     #make a list of squares that collide with flag
@@ -65,4 +64,6 @@ def square_collide_with_bomb(field):
                 collide_with_bomb.append((i, j))
     return collide_with_bomb
 
+def is_solider_touch_flag(collide_with_flag, soldier):
+    solider_touch_flag = False
 
