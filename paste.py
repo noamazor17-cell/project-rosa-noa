@@ -1,4 +1,3 @@
-from pygame.display import update
 
 import Screen
 import consts
