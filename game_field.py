@@ -29,8 +29,8 @@ def print_field():
 
 
 def spred_bombs():
-    field = create_field()
     #get the field, and randomly spred bombs at the field
+    field = create_field()
     for i in range (20):
         col = random.randint(0, consts.BOARD_COLS-1)
         row = random.randint(0, consts.BOARD_ROWS-1)
@@ -60,6 +60,7 @@ def square_collide_with_flag():
     return collide_with_flag
 
 def square_collide_with_bomb():
+    #create a list of all the bombs at the field
     collide_with_bomb = []
     for i in range(consts.BOARD_ROWS):
         for j in range(consts.BOARD_COLS):
@@ -68,6 +69,7 @@ def square_collide_with_bomb():
     return collide_with_bomb
 
 def is_soldier_touch_flag(soldier):
+    #return True if soldier touch flag and False if he does not
     collide_with_flag = square_collide_with_flag()
     for i in range (soldier[0], soldier[0]+3):
         for j in range(soldier[1], soldier[1]+1):
@@ -79,6 +81,7 @@ def is_soldier_touch_flag(soldier):
 
 
 def is_soldier_touch_bomb(soldier):
+    # return True if soldier touch bomb and False if he does not
     collide_with_bomb = square_collide_with_bomb()
     row = soldier[0] + 3
     leg_left = (row, soldier[1])
