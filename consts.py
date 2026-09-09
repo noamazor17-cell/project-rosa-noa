@@ -9,8 +9,8 @@ WINDOW_HEIGHT = BOARD_ROWS * CELL_SIZE
 FLAG_ROWS = 3
 FLAG_COLS = 4
 # game_field.py
-flag_row = BOARD_ROWS - FLAG_ROWS
-flag_col = BOARD_COLS - FLAG_COLS
+flag_row = (BOARD_ROWS - FLAG_ROWS-1)*CELL_SIZE
+flag_col = (BOARD_COLS - FLAG_COLS+1)*CELL_SIZE
 
 
 LOSE_MESSAGE= "you lose"

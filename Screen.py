@@ -5,6 +5,7 @@ from sys import exit #terminate the program
 
 import consts
 import game_field
+from consts import flag_row, flag_col
 
 pygame.font.init()
 
@@ -35,12 +36,13 @@ def draw_bushes():
 
 def draw_bombs(x,y):
     bombs = pygame.image.load("mine.png")
+    bombs = pygame.transform.scale(bombs, (consts.CELL_SIZE*3, consts.CELL_SIZE))
     window.blit(bombs, (x, y))
 
 def draw_flag():
     flag = pygame.image.load("flag.png")
     flag = pygame.transform.scale(flag, (consts.CELL_SIZE*3,consts.CELL_SIZE*4))
-    window.blit(flag, (GAME_WIDTH-3*consts.CELL_SIZE, GAME_HEIGHT - 4*consts.CELL_SIZE))
+    window.blit(flag, (flag_col, flag_row))
 
 
 def draw_text(text, font, text_color, x, y):
@@ -51,8 +53,9 @@ def put_bombs():
     field = game_field.spred_bombs()
     for i in range(len(field)):
         for j in range(len(field[i])):
-            if j == "BOMB":
-                draw_bombs(i,j)
+            if field[i][j] == "EMPTY":
+                    draw_bombs(i,j)
+
 
 def night_mode_lines(screen):
     for x in range(0, GAME_WIDTH, 20):
@@ -61,40 +64,62 @@ def night_mode_lines(screen):
         pygame.draw.line(screen, consts.LINE_COLOR, (y, 1), (y, GAME_WIDTH), 2)
 
 
-def run():
+# def run():
+#     window.fill(consts.COLOR_SCREEN)
+#     for i in range(20):
+#         draw_bushes()
+#     sol_img = pygame.image.load("soldier.png")
+#     draw_player(0, 0, sol_img)
+#     draw_text("Welcome To The Flag Game!\n HAVE FUN!", text_font, (255,255,255), 30,0)
+#     draw_flag()
+#     while True: #game loop
+#         for event in pygame.event.get():
+#             if event.type == pygame.QUIT: #user clicks the X button in window
+#                 pygame.quit()
+#                 exit()
+#         pygame.display.update()
+#         pygame.display.flip()
+
+
+
+# def run_night_mode():
+#     window.fill(consts.COLOR_SCREEN)
+#     night_img = pygame.image.load("soldier_night.png")
+#     # draw_player(0, 0,night_img)
+#     draw_flag()
+#     put_bombs() #DOESNT SHOW BOMBS
+#     screen = pygame.display.set_mode((GAME_WIDTH, GAME_HEIGHT))
+#     while True: #game loop
+#         for event in pygame.event.get():
+#             if event.type == pygame.QUIT: #user clicks the X button in window
+#                 pygame.quit()
+#                 exit()
+#             night_mode_lines(screen)
+#             draw_flag()
+#             draw_player(0, 0, night_img)
+#         pygame.display.update()
+#         pygame.display.flip()
+
+def normal():
     window.fill(consts.COLOR_SCREEN)
     for i in range(20):
         draw_bushes()
     sol_img = pygame.image.load("soldier.png")
     draw_player(0, 0, sol_img)
-    draw_text("Welcome To The Flag Game!\n HAVE FUN!", text_font, (255,255,255), 30,0)
+    draw_text("Welcome To The Flag Game!\n HAVE FUN!", text_font,
+              (255, 255, 255), 30, 0)
     draw_flag()
-    while True: #game loop
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT: #user clicks the X button in window
-                pygame.quit()
-                exit()
-        pygame.display.update()
-        # window.blit(img, (950, 0))
-        # draw_bushes()
-        pygame.display.flip()
 
 
-
-def run_night_mode():
-    window.fill(consts.COLOR_SCREEN)
+def night():
     night_img = pygame.image.load("soldier_night.png")
-    # draw_player(0, 0,night_img)
+    window.fill((0,0,0))
+    # draw_player(0, 0,img_night)
     draw_flag()
-    put_bombs() #DOESNT SHOW BOMBS
-    screen = pygame.display.set_mode((GAME_WIDTH, GAME_HEIGHT))
-    while True: #game loop
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT: #user clicks the X button in window
-                pygame.quit()
-                exit()
-            night_mode_lines(screen)
-            draw_flag()
-            draw_player(0, 0, night_img)
-        pygame.display.update()
-        pygame.display.flip()
+    # put_bombs()
+    night_mode_lines(window)
+    draw_flag()
+    draw_player(0, 0, night_img)
+    # draw_player(0,100, night_img)
+    # draw_player(GAME_WIDTH, 0, night_img)
+    # DOESNT SHOW BOMBS
