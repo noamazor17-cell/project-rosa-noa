@@ -47,6 +47,19 @@ def draw_text(text, font, text_color, x, y):
     text_hello = font.render(text, True, text_color)
     window.blit(text_hello, (x, y))
 
+def put_bombs():
+    field = game_field.spred_bombs()
+    for i in range(len(field)):
+        for j in range(len(field[i])):
+            if j == "BOMB":
+                draw_bombs(i,j)
+
+def night_mode_lines(screen):
+    for x in range(0, GAME_WIDTH, 20):
+        pygame.draw.line(screen, consts.LINE_COLOR, (1, x), (GAME_WIDTH, x), 2)
+    for y in range(0, GAME_WIDTH, 20):
+        pygame.draw.line(screen, consts.LINE_COLOR, (y, 1), (y, GAME_WIDTH), 2)
+
 
 def run():
     window.fill(consts.COLOR_SCREEN)
@@ -66,12 +79,6 @@ def run():
         # draw_bushes()
         pygame.display.flip()
 
-def put_bombs():
-    field = game_field.spred_bombs()
-    for i in range(len(field)):
-        for j in range(len(field[i])):
-            if j == "BOMB":
-                draw_bombs(i,j)
 
 
 def run_night_mode():
@@ -86,10 +93,7 @@ def run_night_mode():
             if event.type == pygame.QUIT: #user clicks the X button in window
                 pygame.quit()
                 exit()
-            for x in range(0,GAME_WIDTH,20):
-                pygame.draw.line(screen,consts.LINE_COLOR, (1,x), (GAME_WIDTH,x), 2)
-            for y in range(0,GAME_WIDTH,20):
-                pygame.draw.line(screen,consts.LINE_COLOR,(y,1), (y,GAME_WIDTH), 2)
+            night_mode_lines(screen)
             draw_flag()
             draw_player(0, 0, night_img)
         pygame.display.update()

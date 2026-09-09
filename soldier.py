@@ -9,15 +9,24 @@ solider = []
 
 #creates soldier body and legs
 def create_solider():
-    global solider
-    for i in range(4):
-        row = []
-        for j in range(2):
-            row.append("BODY")
-        solider.append(row)
-    solider[3][0] = "LEGS"
-    solider[3][1] = "LEGS"
+    solider.append(0)
+    solider.append(0)
     return solider
+
+def update_solider_location(x,y):
+    solider[0] = x
+    solider[1] = y
+    return solider
+
+    # global solider
+    # for i in range(4):
+    #     row = []
+    #     for j in range(2):
+    #         row.append("BODY")
+    #     solider.append(row)
+    # solider[3][0] = "LEGS"
+    # solider[3][1] = "LEGS"
+    # return solider
 
 
 # def is_in_board(col, row):
