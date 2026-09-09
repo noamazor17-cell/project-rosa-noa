@@ -37,17 +37,17 @@ def spred_bombs():
             col = random.randint(0, consts.BOARD_COLS)
             row = random.randint(0, consts.BOARD_ROWS)
         if (col == consts.BOARD_COLS-1):
-            field[row][col] = BOMB
+            field[row][col] = "X"
             field[row][col-1] = BOMB
-            field[row][col-2] = BOMB
+            field[row][col-2] = "X"
         elif (col+1 == consts.BOARD_COLS-1):
             field[row][col] = BOMB
-            field[row][col-1] = BOMB
-            field[row][col+1] = BOMB
+            field[row][col-1] = "X"
+            field[row][col+1] = "X"
         else:
-            field[row][col] = BOMB
+            field[row][col] = "X"
             field[row][col+1] = BOMB
-            field[row][col+2] = BOMB
+            field[row][col+2] = "X"
     return field
 
 def square_collide_with_flag():

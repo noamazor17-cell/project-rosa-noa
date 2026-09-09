@@ -31,6 +31,3 @@ while not is_winner:
 
 
 
-
-
-

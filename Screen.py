@@ -104,8 +104,8 @@ def normal():
     window.fill(consts.COLOR_SCREEN)
     for i in range(20):
         draw_bushes()
-    sol_img = pygame.image.load("soldier.png")
-    draw_player(0, 0, sol_img)
+    # sol_img = pygame.image.load("soldier.png")
+    # draw_player(0, 0, sol_img)
     draw_text("Welcome To The Flag Game!\n HAVE FUN!", text_font,
               (255, 255, 255), 30, 0)
     draw_flag()

@@ -28,8 +28,9 @@ def normal_mode():
         pygame.display.update()
         pygame.display.flip()
 
-
 normal_mode()
+
+
 
 def night_mode():
     Screen.night()
