@@ -61,16 +61,16 @@ def normal_mode():
         if keys[pygame.K_SPACE]:
             Screen.night()
 
-        if keys[pygame.K_LEFT] and x > 0:
+        if keys[pygame.K_LEFT] and x > 0 and event.key == pygame.KEYUP:
             x -= vel
 
-        if keys[pygame.K_RIGHT] and x < consts.WINDOW_WIDTH - width:
+        if keys[pygame.K_RIGHT] and x < consts.WINDOW_WIDTH - width and event.type == pygame.KEYUP:
             x += vel
 
-        if keys[pygame.K_UP] and y > 0:
+        if keys[pygame.K_UP] and y > 0 and event.key == pygame.KEYUP:
             y -= vel
 
-        if keys[pygame.K_DOWN] and y < consts.WINDOW_HEIGHT - width:
+        if keys[pygame.K_DOWN] and y < consts.WINDOW_HEIGHT - width and event.key == pygame.KEYUP:
             y += vel
         Screen.draw_player(x,y,img)
 
@@ -100,7 +100,7 @@ def normal_mode():
         pygame.display.flip()
 
 
-
+normal_mode()
 
 def night_mode():
     Screen.night()

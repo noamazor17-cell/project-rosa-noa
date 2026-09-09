@@ -30,14 +30,17 @@ def draw_player(x,y, img):
 
 
 def draw_bushes():
+        lst = []
         x = random.randint(0,(consts.BOARD_COLS*20))
         y = random.randint(0,(consts.BOARD_ROWS*20))
+        lst.append((x,y))
         window.blit(img, (x, y))
+        return lst
 
 def draw_bombs(x,y):
     bombs = pygame.image.load("mine.png")
     bombs = pygame.transform.scale(bombs, (consts.CELL_SIZE*3, consts.CELL_SIZE))
-    window.blit(bombs, (x, y))
+
 
 def draw_flag():
     flag = pygame.image.load("flag.png")
@@ -106,7 +109,7 @@ def d():
 
 def normal():
     window.fill(consts.COLOR_SCREEN)
-    # d()
+    d()
     sol_img = pygame.image.load("soldier.png")
     # draw_player(0, 0, sol_img)
     draw_text("Welcome To The Flag Game!\n HAVE FUN!", text_font,
