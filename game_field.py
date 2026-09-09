@@ -63,7 +63,7 @@ def square_collide_with_bomb():
     collide_with_bomb = []
     for i in range(consts.BOARD_ROWS):
         for j in range(consts.BOARD_COLS):
-            if field[i][j] == BOMB:
+            if field[i][j] == BOMB or field[i][j] == "X":
                 collide_with_bomb.append((i, j))
     return collide_with_bomb
 
@@ -80,11 +80,11 @@ def is_soldier_touch_flag(soldier):
 
 def is_soldier_touch_bomb(soldier):
     collide_with_bomb = square_collide_with_bomb()
-    for i in range (soldier[0]+3, soldier[0]+4):
-        for j in range (soldier[1], soldier[1]+1):
-            coordinate = (i, j)
-            if coordinate in collide_with_bomb:
-                return True
+    row = soldier[0] + 3
+    leg_left = (row, soldier[1])
+    leg_right = (row, soldier[1]+1)
+    if leg_right in collide_with_bomb or leg_left in collide_with_bomb:
+        return True
     else:
         return False
 

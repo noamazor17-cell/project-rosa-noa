@@ -20,37 +20,41 @@ img = pygame.image.load("grass.png")
 img = pygame.transform.scale(img, (consts.CELL_SIZE*3, consts.CELL_SIZE*3))
 
 
+#draw the screen
 def draw_screen():
     pygame.init() #always needed to initialize pygame
     pygame.display.set_caption("The Flag Game") #title of the window
 
-def draw_player(x,y, img):
-    player = pygame.transform.scale(img, (consts.CELL_SIZE * 2, consts.CELL_SIZE * 4))
+#draw the player in location (x,y)
+def draw_player(x,y, picture):
+    player = pygame.transform.scale(picture, (consts.CELL_SIZE * 2, consts.CELL_SIZE * 4))
     window.blit(player, (x,y))
 
+#random put bushes
 lst_bushes = []
 for i in range(20):
     x = random.randint(0, (consts.BOARD_COLS * 20))
     y = random.randint(0, (consts.BOARD_ROWS * 20))
     lst_bushes.append((x,y))
 
-
+#draw the random put bushes
 def draw_bushes():
         for bush in lst_bushes:
             window.blit(img, bush)
 
+#draw the bushes
 def draw_bombs(x,y):
     bombs = pygame.image.load("mine.png")
     bombs = pygame.transform.scale(bombs, (consts.CELL_SIZE*3, consts.CELL_SIZE))
     window.blit(bombs, (y,x))
 
-
+#draw the flag in location and size 3 cols on 4 rows
 def draw_flag():
     flag = pygame.image.load("flag.png")
     flag = pygame.transform.scale(flag, (consts.CELL_SIZE*3,consts.CELL_SIZE*4))
     window.blit(flag, (flag_col, flag_row))
 
-
+#draw text
 def draw_text(text, font, text_color, x, y):
     text_hello = font.render(text, True, text_color)
     window.blit(text_hello, (x, y))
@@ -74,45 +78,6 @@ def night_mode_lines(screen):
         pygame.draw.line(screen, consts.LINE_COLOR, (y, 1), (y, GAME_WIDTH), 2)
 
 
-# def run():
-#     window.fill(consts.COLOR_SCREEN)
-#     for i in range(20):
-#         draw_bushes()
-#     sol_img = pygame.image.load("soldier.png")
-#     draw_player(0, 0, sol_img)
-#     draw_text("Welcome To The Flag Game!\n HAVE FUN!", text_font, (255,255,255), 30,0)
-#     draw_flag()
-#     while True: #game loop
-#         for event in pygame.event.get():
-#             if event.type == pygame.QUIT: #user clicks the X button in window
-#                 pygame.quit()
-#                 exit()
-#         pygame.display.update()
-#         pygame.display.flip()
-
-
-
-# def run_night_mode():
-#     window.fill(consts.COLOR_SCREEN)
-#     night_img = pygame.image.load("soldier_night.png")
-#     # draw_player(0, 0,night_img)
-#     draw_flag()
-#     put_bombs() #DOESNT SHOW BOMBS
-#     screen = pygame.display.set_mode((GAME_WIDTH, GAME_HEIGHT))
-#     while True: #game loop
-#         for event in pygame.event.get():
-#             if event.type == pygame.QUIT: #user clicks the X button in window
-#                 pygame.quit()
-#                 exit()
-#             night_mode_lines(screen)
-#             draw_flag()
-#             draw_player(0, 0, night_img)
-#         pygame.display.update()
-#         pygame.display.flip()
-
-# def d():
-#     for i in range(20):
-#         draw_bushes()
 
 def normal():
     window.fill(consts.COLOR_SCREEN)
@@ -132,18 +97,7 @@ def night():
     put_bombs()
     night_mode_lines(window)
     draw_flag()
-    draw_player(0, 0, night_img)
     # draw_player(0,100, night_img)
     # draw_player(GAME_WIDTH, 0, night_img)
     # DOESNT SHOW BOMBS
 
-# def __init__(self, image, height, speed):
-#         self.speed = speed
-#         self.image = image
-#         self.pos = image.get_rect().move(0, height)
-#
-# def move(self):
-
-#         self.pos = self.pos.move(self.speed, 0)
-#         if self.pos.right > 600:
-#             self.pos.left = 0
