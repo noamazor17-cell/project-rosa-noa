@@ -42,7 +42,7 @@ def update_solider_location(x,y):
 
 #checks if player is in range of board
 def is_in_board(col, row):
-    return row >= 0 and row + 3 <= consts.BOARD_ROWS and col + 1 >= consts.BOARD_COLS and col >= 0
+    return row >= 0 and row + 3 <= consts.BOARD_ROWS and col + 1 <= consts.BOARD_COLS and col >= 0
 
 
 # def print_soldier(soldier):
@@ -75,7 +75,7 @@ def move():
 
 def make_a_move():
     the_move = move()
-    if is_in_board(the_move[0], the_move[1]):
+    if is_in_board(the_move[1], the_move[0]):
         update_solider_location(the_move[0], the_move[1])
         return True
     else:

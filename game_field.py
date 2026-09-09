@@ -78,7 +78,7 @@ def is_soldier_touch_flag(soldier):
 
 
 def is_soldier_touch_bomb(soldier):
-    collide_with_bomb = square_collide_with_bomb(field)
+    collide_with_bomb = square_collide_with_bomb()
     for i in range (soldier[0]+3, soldier[0]+4):
         for j in range (soldier[1], soldier[1]+1):
             coordinate = (i, j)

@@ -20,8 +20,16 @@ while not is_winner:
     is_winner = gf.is_soldier_touch_flag(s)
     if is_winner:
         print("soldier wins")
+    else:
+        print("game not over")
     if gf.is_soldier_touch_bomb(s):
         print("soldier lost")
+
+
+
+
+
+
 
 
 
