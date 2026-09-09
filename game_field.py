@@ -7,8 +7,9 @@ field = []
 EMPTY = "EMPTY"
 BOMB = "BOMB"
 
+
+# creat the field
 def create_field():
-    #creat the field
     global field
     for i in range(consts.BOARD_ROWS):
         row = []
@@ -17,9 +18,8 @@ def create_field():
         field.append(row)
     return field
 
-
+#print field
 def print_field():
-    #print field
     for row in field:
         for col in row:
             print(col, end=" ")
@@ -27,9 +27,8 @@ def print_field():
 
 
 
-
+#get the field, and randomly spred bombs at the field
 def spred_bombs():
-    #get the field, and randomly spred bombs at the field
     field = create_field()
     for i in range (20):
         col = random.randint(0, consts.BOARD_COLS-1)
@@ -51,16 +50,16 @@ def spred_bombs():
             field[row][col+2] = "X"
     return field
 
+#make a list of squares that collide with flag
 def square_collide_with_flag():
-    #make a list of squares that collide with flag
     collide_with_flag = []
     for i in range(consts.BOARD_ROWS, consts.BOARD_ROWS-3, -1):
         for j in range(consts.BOARD_COLS, consts.BOARD_COLS-4, -1):
             collide_with_flag.append((i, j))
     return collide_with_flag
 
+#create a list of all the bombs at the field
 def square_collide_with_bomb():
-    #create a list of all the bombs at the field
     collide_with_bomb = []
     for i in range(consts.BOARD_ROWS):
         for j in range(consts.BOARD_COLS):
@@ -68,8 +67,8 @@ def square_collide_with_bomb():
                 collide_with_bomb.append((i, j))
     return collide_with_bomb
 
+#return True if soldier touch flag and False if he does not
 def is_soldier_touch_flag(soldier):
-    #return True if soldier touch flag and False if he does not
     collide_with_flag = square_collide_with_flag()
     for i in range (soldier[0], soldier[0]+3):
         for j in range(soldier[1], soldier[1]+1):
@@ -79,9 +78,8 @@ def is_soldier_touch_flag(soldier):
     else:
         return False
 
-
+# return True if soldier touch bomb and False if he does not
 def is_soldier_touch_bomb(soldier):
-    # return True if soldier touch bomb and False if he does not
     collide_with_bomb = square_collide_with_bomb()
     row = soldier[0] + 3
     leg_left = (row, soldier[1])

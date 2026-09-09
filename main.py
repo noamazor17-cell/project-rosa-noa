@@ -9,18 +9,19 @@ import game_field
 import soldier
 
 
-player = pygame.Vector2(100,100)
-
 
 dark = pygame.image.load("soldier_night.png")
 dead = pygame.image.load("injury.png")
 
 
-
+#run game
 def normal_mode():
     img = pygame.image.load("soldier.png")
+    #cordinantes
     x = 0
     y = 0
+
+    #if lost or won
     flag = False
 
     Screen.window.fill((0,0,0))
@@ -68,17 +69,3 @@ def normal_mode():
 
 
 normal_mode()
-
-# def night_mode():
-#     Screen.night()
-#     while True: #game loop
-#         for event in pygame.event.get():
-#             if event.type == pygame.QUIT: #user clicks the X button in window
-#                 pygame.quit()
-#                 exit()
-#         pygame.display.update()
-#         pygame.display.flip()
-
-
-# night_mode()
-# Screen.run_night_mode()

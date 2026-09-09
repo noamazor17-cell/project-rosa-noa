@@ -27,14 +27,14 @@ def draw_screen():
 
 #draw the player in location (x,y)
 def draw_player(x,y, picture):
-    player = pygame.transform.scale(picture, (consts.CELL_SIZE * 2, consts.CELL_SIZE * 4))
+    player = pygame.transform.scale(picture, (consts.CELL_SIZE * consts.PLAYER_WIDTH, consts.CELL_SIZE * consts.PLAYER_HEIGHT))
     window.blit(player, (x,y))
 
 #random put bushes
 lst_bushes = []
 for i in range(20):
-    x = random.randint(0, (consts.BOARD_COLS * 20))
-    y = random.randint(0, (consts.BOARD_ROWS * 20))
+    x = random.randint(0, (consts.BOARD_COLS * consts.CELL_SIZE))
+    y = random.randint(0, (consts.BOARD_ROWS * consts.CELL_SIZE))
     lst_bushes.append((x,y))
 
 #draw the random put bushes
@@ -51,7 +51,7 @@ def draw_bombs(x,y):
 #draw the flag in location and size 3 cols on 4 rows
 def draw_flag():
     flag = pygame.image.load("flag.png")
-    flag = pygame.transform.scale(flag, (consts.CELL_SIZE*3,consts.CELL_SIZE*4))
+    flag = pygame.transform.scale(flag, (consts.CELL_SIZE*consts.FLAG_ROWS,consts.CELL_SIZE*consts.FLAG_COLS))
     window.blit(flag, (flag_col, flag_row))
 
 #draw text
@@ -59,6 +59,7 @@ def draw_text(text, font, text_color, x, y):
     text_hello = font.render(text, True, text_color)
     window.blit(text_hello, (x, y))
 
+#save the pos of the bombs
 where_bomb = []
 field = game_field.spred_bombs()
 for i in range(len(field)):
@@ -66,11 +67,12 @@ for i in range(len(field)):
         if field[i][j] == "BOMB":
                 where_bomb.append((i, j))
 
+#from the positions saved -> draw the bombs
 def put_bombs():
     for bomb in where_bomb:
         draw_bombs(bomb[0]*consts.CELL_SIZE,bomb[1]*consts.CELL_SIZE)
 
-
+#draw the lines in the night mode
 def night_mode_lines(screen):
     for x in range(0, GAME_WIDTH, 20):
         pygame.draw.line(screen, consts.LINE_COLOR, (1, x), (GAME_WIDTH, x), 2)
@@ -78,7 +80,8 @@ def night_mode_lines(screen):
         pygame.draw.line(screen, consts.LINE_COLOR, (y, 1), (y, GAME_WIDTH), 2)
 
 
-
+#create the "normal" screen
+#soldier + bushes + flag
 def normal():
     window.fill(consts.COLOR_SCREEN)
     draw_bushes()
@@ -88,16 +91,12 @@ def normal():
               (255, 255, 255), 30, 0)
     draw_flag()
 
-
+#create the "dark" screen
+#soldier + bombs + lines + flag
 def night():
-    night_img = pygame.image.load("soldier_night.png")
     window.fill((0,0,0))
-    # draw_player(0, 0,img_night)
     draw_flag()
     put_bombs()
     night_mode_lines(window)
     draw_flag()
-    # draw_player(0,100, night_img)
-    # draw_player(GAME_WIDTH, 0, night_img)
-    # DOESNT SHOW BOMBS
 
