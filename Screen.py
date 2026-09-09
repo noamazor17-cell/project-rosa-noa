@@ -28,18 +28,21 @@ def draw_player(x,y, img):
     player = pygame.transform.scale(img, (consts.CELL_SIZE * 2, consts.CELL_SIZE * 4))
     window.blit(player, (x,y))
 
+lst_bushes = []
+for i in range(20):
+    x = random.randint(0, (consts.BOARD_COLS * 20))
+    y = random.randint(0, (consts.BOARD_ROWS * 20))
+    lst_bushes.append((x,y))
+
 
 def draw_bushes():
-        lst = []
-        x = random.randint(0,(consts.BOARD_COLS*20))
-        y = random.randint(0,(consts.BOARD_ROWS*20))
-        lst.append((x,y))
-        window.blit(img, (x, y))
-        return lst
+        for bush in lst_bushes:
+            window.blit(img, bush)
 
 def draw_bombs(x,y):
     bombs = pygame.image.load("mine.png")
     bombs = pygame.transform.scale(bombs, (consts.CELL_SIZE*3, consts.CELL_SIZE))
+    window.blit(bombs, (y,x))
 
 
 def draw_flag():
@@ -52,12 +55,16 @@ def draw_text(text, font, text_color, x, y):
     text_hello = font.render(text, True, text_color)
     window.blit(text_hello, (x, y))
 
+where_bomb = []
+field = game_field.spred_bombs()
+for i in range(len(field)):
+    for j in range(len(field[i])):
+        if field[i][j] == "BOMB":
+                where_bomb.append((i, j))
+
 def put_bombs():
-    field = game_field.spred_bombs()
-    for i in range(len(field)):
-        for j in range(len(field[i])):
-            if field[i][j] == "BOMB":
-                    draw_bombs(i*consts.CELL_SIZE,j*consts.CELL_SIZE)
+    for bomb in where_bomb:
+        draw_bombs(bomb[0]*consts.CELL_SIZE,bomb[1]*consts.CELL_SIZE)
 
 
 def night_mode_lines(screen):
@@ -103,13 +110,13 @@ def night_mode_lines(screen):
 #         pygame.display.update()
 #         pygame.display.flip()
 
-def d():
-    for i in range(20):
-        draw_bushes()
+# def d():
+#     for i in range(20):
+#         draw_bushes()
 
 def normal():
     window.fill(consts.COLOR_SCREEN)
-    d()
+    draw_bushes()
     sol_img = pygame.image.load("soldier.png")
     # draw_player(0, 0, sol_img)
     draw_text("Welcome To The Flag Game!\n HAVE FUN!", text_font,
