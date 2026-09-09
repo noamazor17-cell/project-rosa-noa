@@ -17,7 +17,7 @@ text_font = pygame.font.SysFont(consts.FONT_NAME, consts.FONT_SIZE)
 window = pygame.display.set_mode((GAME_WIDTH, GAME_HEIGHT))
 
 img = pygame.image.load("grass.png")
-img = pygame.transform.scale(img, (60, 60))
+img = pygame.transform.scale(img, (consts.CELL_SIZE*3, consts.CELL_SIZE*3))
 
 
 def draw_screen():
@@ -53,8 +53,8 @@ def put_bombs():
     field = game_field.spred_bombs()
     for i in range(len(field)):
         for j in range(len(field[i])):
-            if field[i][j] == "EMPTY":
-                    draw_bombs(i,j)
+            if field[i][j] == "BOMB":
+                    draw_bombs(i*consts.CELL_SIZE,j*consts.CELL_SIZE)
 
 
 def night_mode_lines(screen):
@@ -100,11 +100,14 @@ def night_mode_lines(screen):
 #         pygame.display.update()
 #         pygame.display.flip()
 
-def normal():
-    window.fill(consts.COLOR_SCREEN)
+def d():
     for i in range(20):
         draw_bushes()
-    # sol_img = pygame.image.load("soldier.png")
+
+def normal():
+    window.fill(consts.COLOR_SCREEN)
+    # d()
+    sol_img = pygame.image.load("soldier.png")
     # draw_player(0, 0, sol_img)
     draw_text("Welcome To The Flag Game!\n HAVE FUN!", text_font,
               (255, 255, 255), 30, 0)
@@ -116,10 +119,21 @@ def night():
     window.fill((0,0,0))
     # draw_player(0, 0,img_night)
     draw_flag()
-    # put_bombs()
+    put_bombs()
     night_mode_lines(window)
     draw_flag()
     draw_player(0, 0, night_img)
     # draw_player(0,100, night_img)
     # draw_player(GAME_WIDTH, 0, night_img)
     # DOESNT SHOW BOMBS
+
+# def __init__(self, image, height, speed):
+#         self.speed = speed
+#         self.image = image
+#         self.pos = image.get_rect().move(0, height)
+#
+# def move(self):
+
+#         self.pos = self.pos.move(self.speed, 0)
+#         if self.pos.right > 600:
+#             self.pos.left = 0

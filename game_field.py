@@ -27,6 +27,7 @@ def print_field():
 
 
 
+
 def spred_bombs():
     field = create_field()
     #get the field, and randomly spred bombs at the field

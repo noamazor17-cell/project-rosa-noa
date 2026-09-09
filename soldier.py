@@ -1,3 +1,4 @@
+import Screen
 import consts
 import random
 import keyboard
@@ -5,15 +6,16 @@ import pygame
 
 import game_field
 
-solider = []
+solider = [0,0]
 
 #creates soldier body and legs
-def create_solider():
-    solider.append(0)
-    solider.append(0)
-    return solider
+# def create_solider():
+#     solider.append(0)
+#     solider.append(0)
+#     return solider
 
 def update_solider_location(x,y):
+    # create_solider()
     solider[0] = x
     solider[1] = y
     return solider
@@ -82,6 +84,30 @@ def make_a_move():
         return False
 
 
-
+# def move_sol():
+#     x = 200
+#     y = 200
+#
+#     width = 20
+#     height = 20
+#
+#     vel = 10
+#
+#     keys = pygame.key.get_pressed()
+#
+#     if keys[pygame.K_LEFT] and x > 0:
+#         x -= vel
+#
+#     if keys[pygame.K_RIGHT] and x < consts.WINDOW_WIDTH - width:
+#         x += vel
+#
+#     if keys[pygame.K_UP] and y > 0:
+#         y -= vel
+#
+#     if keys[pygame.K_DOWN] and y < consts.WINDOW_HEIGHT - width:
+#         y += vel
+#
+#     Screen.normal()
+#     pygame.draw.rect(Screen.window, (255, 0, 0), (x, y, width, height))
 
 
